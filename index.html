@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#050816">
+    <meta name="description" content="MollyKao: descubre DRACOX, KRAXEN, BOLSEUS, HEXUNGUS y LETRIÑA, calcula tu pack al instante y prueba la ruleta con las probabilidades a la vista.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="MollyKao | La colección">
+    <meta property="og:description" content="Cinco productos desde 1,50 €. Crea tu pack y prueba la ruleta.">
+    <title>MollyKao | La colección</title>
+    <script>document.documentElement.classList.add('js');</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Colección MollyKao",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "item": {"@type": "Product", "name": "DRACOX", "brand": "MollyKao", "offers": {"@type": "Offer", "price": "2.00", "priceCurrency": "EUR"}}},
+        {"@type": "ListItem", "position": 2, "item": {"@type": "Product", "name": "KRAXEN", "brand": "MollyKao", "offers": {"@type": "Offer", "price": "2.50", "priceCurrency": "EUR"}}},
+        {"@type": "ListItem", "position": 3, "item": {"@type": "Product", "name": "BOLSEUS", "brand": "MollyKao", "offers": {"@type": "Offer", "price": "2.00", "priceCurrency": "EUR"}}},
+        {"@type": "ListItem", "position": 4, "item": {"@type": "Product", "name": "HEXUNGUS", "brand": "MollyKao", "offers": {"@type": "Offer", "price": "2.00", "priceCurrency": "EUR"}}},
+        {"@type": "ListItem", "position": 5, "item": {"@type": "Product", "name": "LETRIÑA", "brand": "MollyKao", "offers": {"@type": "Offer", "price": "1.50", "priceCurrency": "EUR"}}}
+      ]
+    }
+    </script>
+</head>
+<body>
+    
+    <div class="preloader" id="preloader" aria-hidden="true">
+        <div class="preloader-inner">
+            <img class="preloader-logo" src="MollyKao.png" alt="" width="160" height="160" onerror="this.replaceWith(Object.assign(document.createElement('div'), { className: 'preloader-mark', textContent: 'MK' }))">
+            <div class="preloader-bar"><span></span></div>
+        </div>
+    </div>
+
+    <div class="progress" id="progress" aria-hidden="true"></div>
+    <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+    <canvas id="bg-canvas" aria-hidden="true"></canvas>
+    <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+
+    <a class="skip-link" href="#productos">Saltar al contenido</a>
+
+    <header class="site-header" id="site-header">
+        <a class="brand" href="#inicio" aria-label="MollyKao, inicio">
+            <img src="MollyKao.png" class="logo-molly" alt="" width="56" height="56" onerror="this.style.display='none'">
+            <span class="brand-text">MollyKao<i>.</i></span>
+        </a>
+        <nav class="main-nav" id="main-nav" aria-label="Navegación principal">
+            <a href="#productos" data-spy="productos">Productos</a>
+            <a href="#packs" data-spy="packs">Calculadora</a>
+            <a href="#ruleta" data-spy="ruleta">Ruleta</a>
+            <a href="#faq" data-spy="faq">Preguntas</a>
+            <a href="#quienes-somos" data-spy="quienes-somos">JGT</a>
+            <a href="#contacto" data-spy="contacto">Contacto</a>
+        </nav>
+        <a class="btn btn-primary btn-sm magnetic header-cta" href="#packs">Crea tu pack</a>
+        <button class="burger" id="burger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-nav"><span></span><span></span></button>
+    </header>
+
+    <main>
+        
+        <section class="hero" id="inicio">
+            <div class="hero-copy">
+                <p class="pill reveal"><span class="dot"></span> MollyKao · JGT</p>
+                <h1 class="hero-title" aria-label="Descubre MollyKao">
+                    <span class="ln" aria-hidden="true"><span>Descubre</span></span>
+                    <span class="ln" aria-hidden="true"><span><em class="grad">MollyKao</em></span></span>
+                </h1>
+                <p class="hero-lead reveal" style="--d:.35s">5 impresiones a la venta y con precios bajos.<br>Échales un vistazo y combínalos como quieras.</p>
+                <div class="hero-actions reveal" style="--d:.45s">
+                    <a class="btn btn-primary magnetic" href="#productos">Ver la colección <span aria-hidden="true">→</span></a>
+                    <a class="btn btn-ghost magnetic" href="#packs">Calcular mi pack</a>
+                </div>
+                <ul class="hero-chips reveal" style="--d:.5s" aria-label="Acceso rápido a los productos">
+                    <li><a href="#productos" data-find="dracox"><b>D</b>DRACOX <em>2 €</em></a></li>
+                    <li><a href="#productos" data-find="kraxen"><b>K</b>KRAXEN <em>2,50 €</em></a></li>
+                    <li><a href="#productos" data-find="bolseus"><b>B</b>BOLSEUS <em>2 €</em></a></li>
+                    <li><a href="#productos" data-find="hexungus"><b>H</b>HEXUNGUS <em>2 €</em></a></li>
+                    <li><a href="#productos" data-find="letrina"><b>L</b>LETRIÑA <em>1,50 €</em></a></li>
+                </ul>
+                <ul class="hero-stats reveal" style="--d:.6s">
+                    <li><strong data-count="5">0</strong><span>productos en la colección</span></li>
+                    <li><strong data-count="5">0</strong><span>con precio publicado</span></li>
+                    <li><strong>desde <b data-count="1.5" data-dec="2">0</b> €</strong><span>precio más bajo</span></li>
+                </ul>
+            </div>
+
+            <a class="scroll-cue" href="#productos" aria-label="Bajar a los productos"><span></span></a>
+        </section>
+
+        
+        <div class="marquee-wrap" aria-hidden="true">
+        <div class="marquee">
+            <div class="marquee-track">
+                <div class="marquee-group">
+                    <span>DRACOX</span><i>✦</i><span>KRAXEN</span><i>✦</i><span>BOLSEUS</span><i>✦</i><span>HEXUNGUS</span><i>✦</i><span>LETRIÑA</span><i>✦</i>
+                    <span>MOLLYKAO</span><i>✦</i><span>JGT</span><i>✦</i>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        
+        <section class="section catalog" id="productos" aria-labelledby="products-title">
+            <div class="wrap">
+                <div class="section-head reveal">
+                    <p class="eyebrow">La colección</p>
+                    <h2 id="products-title">Cinco productos, <em class="grad">elige bien cuáles llevarte</em></h2>
+                    <p class="section-sub">Abre la ficha de cada producto, elige su acabado, añádelo a tu pack y mira cómo suma.</p>
+                </div>
+
+                <div class="catalog-tools reveal">
+                    <label class="search-box">
+                        <span aria-hidden="true">⌕</span>
+                        <input id="product-search" type="search" placeholder="Buscar un producto…" autocomplete="off" aria-label="Buscar productos">
+                        <kbd>/</kbd>
+                    </label>
+                    <div class="filter-group" role="group" aria-label="Filtrar productos">
+                        <button class="filter-button is-active" type="button" data-filter="all" aria-pressed="true">Todos <span>5</span></button>
+                        <button class="filter-button" type="button" data-filter="2" aria-pressed="false">Hasta 2 € <span>4</span></button>
+                        <button class="filter-button" type="button" data-filter="premium" aria-pressed="false">Destacado <span>1</span></button>
+                        <button class="filter-button" type="button" data-filter="new" aria-pressed="false">Nuevos <span>2</span></button>
+                    </div>
+                </div>
+
+                <div class="product-grid" id="product-grid">
+                    <article class="product-card tone-coral reveal" style="--d:0s" data-name="dracox" data-price="2" data-category="standard">
+                        <div class="product-visual"><span class="visual-index">01</span><span class="visual-mark" aria-hidden="true">D</span><span class="visual-slides" data-slides="dracox1.png,dracox2.png" data-alt="DRACOX"></span><span class="visual-orb" aria-hidden="true"></span></div>
+                        <div class="product-info">
+                            <div class="product-title-row"><h3>DRACOX</h3><span class="product-tag">Favorito</span></div>
+                            <p>DRACOX es un soporte de móvil impreso en 3D, inspirado en un dragón de la suerte.</p>
+                            <div class="product-bottom">
+                                <span class="product-price">2 <small>€</small></span>
+                                <div class="product-actions">
+                                    <button class="icon-btn" type="button" data-add="dracox" aria-label="Añadir DRACOX al pack">+</button>
+                                    <button class="btn btn-dark btn-xs" type="button" data-open="dracox">Ver <span aria-hidden="true">↗</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card tone-lime reveal" style="--d:.08s" data-name="kraxen" data-price="2.5" data-category="premium">
+                        <div class="product-visual"><span class="visual-index">02</span><span class="visual-mark" aria-hidden="true">K</span><span class="visual-slides" data-slides="kraxen1.png" data-alt="KRAXEN"></span><span class="visual-orb" aria-hidden="true"></span></div>
+                        <div class="product-info">
+                            <div class="product-title-row"><h3>KRAXEN</h3><span class="product-tag">Destacado</span></div>
+                            <p>KRAXEN es un soporte de móvil, impreso en 3D, inspirado en el KRAKEN, una criatura abismal con forma de calamar.</p>
+                            <div class="product-bottom">
+                                <span class="product-price">2,50 <small>€</small></span>
+                                <div class="product-actions">
+                                    <button class="icon-btn" type="button" data-add="kraxen" aria-label="Añadir KRAXEN al pack">+</button>
+                                    <button class="btn btn-dark btn-xs" type="button" data-open="kraxen">Ver <span aria-hidden="true">↗</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card tone-blue reveal" style="--d:.16s" data-name="bolseus" data-price="2" data-category="standard">
+                        <div class="product-visual"><span class="visual-index">03</span><span class="visual-mark" aria-hidden="true">B</span><span class="visual-slides" data-slides="bolseus1.png,bolseus2.png" data-alt="BOLSEUS"></span><span class="visual-orb" aria-hidden="true"></span></div>
+                        <div class="product-info">
+                            <div class="product-title-row"><h3>BOLSEUS</h3><span class="product-tag">El Primero</span></div>
+                            <p>BOLSEUS permite cargar con múltiples bolsas a la vez para facilitar las tareas como comprar en el supermercado.</p>
+                            <div class="product-bottom">
+                                <span class="product-price">2 <small>€</small></span>
+                                <div class="product-actions">
+                                    <button class="icon-btn" type="button" data-add="bolseus" aria-label="Añadir BOLSEUS al pack">+</button>
+                                    <button class="btn btn-dark btn-xs" type="button" data-open="bolseus">Ver <span aria-hidden="true">↗</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card tone-violet reveal" style="--d:.24s" data-name="hexungus" data-price="2" data-category="new">
+                        <div class="product-visual"><span class="visual-index">04</span><span class="visual-mark" aria-hidden="true">H</span><span class="visual-slides" data-slides="hexungus.png" data-alt="HEXUNGUS"></span><span class="visual-orb" aria-hidden="true"></span></div>
+                        <div class="product-info">
+                            <div class="product-title-row"><h3>HEXUNGUS</h3><span class="product-tag">Nuevo</span></div>
+                            <p>Hexungus es una figura antiestresante, con un diseño particular que lo permite usar como llavero para llevarlo a todas partes.</p>
+                            <div class="product-bottom">
+                                <span class="product-price">2 <small>€</small></span>
+                                <div class="product-actions">
+                                    <button class="icon-btn" type="button" data-add="hexungus" aria-label="Añadir HEXUNGUS al pack">+</button>
+                                    <button class="btn btn-dark btn-xs" type="button" data-open="hexungus">Ver <span aria-hidden="true">↗</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card tone-cyan reveal" style="--d:.32s" data-name="letrina" data-price="1.5" data-category="new">
+                        <div class="product-visual"><span class="visual-index">05</span><span class="visual-mark visual-mark-serif" aria-hidden="true">L</span><span class="visual-orb" aria-hidden="true"></span></div>
+                        <div class="product-info">
+                            <div class="product-title-row"><h3>LETRIÑA</h3><span class="product-tag">Nuevo</span></div>
+                            <p>Letriña, cuyo modelo es una letra, cuenta con un diseño único que permite incorporarla a un llavero. Perfecto para regalos.</p>
+                            <div class="product-bottom">
+                                <span class="product-price">1,50 <small>€</small></span>
+                                <div class="product-actions">
+                                    <button class="icon-btn" type="button" data-add="letrina" aria-label="Añadir LETRIÑA al pack">+</button>
+                                    <button class="btn btn-dark btn-xs" type="button" data-open="letrina">Ver <span aria-hidden="true">↗</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <p class="empty-state" id="empty-state" hidden>No encontramos ese producto. Prueba con otro nombre.</p>
+            </div>
+        </section>
+
+        
+        <section class="section why" aria-labelledby="why-title">
+            <div class="wrap">
+                <div class="section-head reveal">
+                    <p class="eyebrow">Cómo funciona</p>
+                    <h2 id="why-title">Pensado para que <em class="grad">elegir sea fácil</em></h2>
+                </div>
+                <div class="bento">
+                    <article class="bento-card bento-wide reveal" style="--d:0s">
+                        <span class="bento-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24"><path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>
+                        </span>
+                        <h3>Precios claros desde el primer vistazo</h3>
+                        <p>Cada producto muestra su precio sin letra pequeña, desde 1,50 € hasta 2,50 €.</p>
+                        <div class="bento-prices" aria-hidden="true"><span>1,50 €</span><span>2 €</span><span>2,50 €</span></div>
+                    </article>
+                    <article class="bento-card reveal" style="--d:.08s">
+                        <span class="bento-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
+                        </span>
+                        <h3>Mira antes de decidir</h3>
+                        <p>Cada producto tiene su ficha con fotos y acabados. Ábrela sin salir de la página.</p>
+                    </article>
+                    <article class="bento-card reveal" style="--d:.16s">
+                        <span class="bento-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                        </span>
+                        <h3>Tu pack, a tu medida</h3>
+                        <p>Suma cantidades y copia el resumen en un clic.</p>
+                    </article>
+                    <article class="bento-card bento-wide bento-accent reveal" style="--d:.24s">
+                        <span class="bento-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24"><path d="m12 3 1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 3v4M17 5h4"/><path d="M5 17v4M3 19h4"/></svg>
+                        </span>
+                        <h3>Una colección que sigue creciendo</h3>
+                        <p>HEXUNGUS y LETRIÑA ya forman parte de ella y pronto llegarán más. Y tú puedes proponer lo siguiente.</p>
+                        <a class="text-link" href="#contacto">Enviar una idea <span aria-hidden="true">→</span></a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="section packs" id="packs" aria-labelledby="packs-title">
+            <div class="wrap packs-grid">
+                <div class="packs-copy reveal">
+                    <p class="eyebrow">Calculadora de precios</p>
+                    <h2 id="packs-title">Crea tu <em class="grad">pack</em></h2>
+                    <p class="section-sub">Elige una combinación sugerida o ajusta las cantidades a tu gusto. El total se actualiza al instante.</p>
+                    <div class="pack-presets" role="group" aria-label="Packs sugeridos">
+                        <button type="button" data-pack="dracox:1,bolseus:1"><strong>Dúo clásico</strong><span>DRACOX + BOLSEUS</span><em>4,00 €</em></button>
+                        <button type="button" data-pack="dracox:1,kraxen:1"><strong>Mix especial</strong><span>DRACOX + KRAXEN</span><em>4,50 €</em></button>
+                        <button type="button" data-pack="dracox:1,kraxen:1,bolseus:1,hexungus:1,letrina:1"><strong>Colección completa</strong><span>Los cinco</span><em>10,00 €</em></button>
+                    </div>
+                </div>
+
+                <div class="cart-panel reveal" style="--d:.12s" id="cart-panel">
+                    <div class="cart-head"><span>ELIGE TU COMBINACIÓN</span><button type="button" class="link-btn" id="cart-clear">Vaciar</button></div>
+                    <div class="cart-rows" id="cart-rows"></div>
+                    <div class="cart-total"><span>Total estimado</span><strong id="cart-total">0,00 €</strong></div>
+                    <p class="cart-hint" id="cart-hint" aria-live="polite">Elige uno o varios para empezar.</p>
+                    <div class="cart-actions">
+                        <button class="btn btn-primary btn-sm" type="button" id="cart-share">Guardar o compartir</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="section wheel-section" id="ruleta" aria-labelledby="roulette-title">
+            <div class="wrap wheel-grid">
+                <div class="wheel-copy reveal">
+                    <p class="eyebrow">Ludopatia?</p>
+                    <h2 id="roulette-title">La <em class="grad">ruleta</em></h2>
+                    <p class="section-sub">Tienes una tirada al día. Las probabilidades están a la vista, sin trucos: gira y mira qué sale.</p>
+                    <p class="wheel-disclaimer">Una tirada al día: vuelve mañana para girar otra vez. Si te toca un cupón, ¡es tuyo y puedes usarlo!</p>
+                    <div class="wheel-result" id="wheel-result" aria-live="polite">Suerte...</div>
+                    <ul class="wheel-odds" id="wheel-odds" aria-label="Probabilidades de la ruleta"></ul>
+                </div>
+
+                <div class="wheel-play reveal" style="--d:.1s">
+                    <div class="wheel-wrap">
+                        <div class="wheel-pointer" id="wheel-pointer" aria-hidden="true"></div>
+                        <canvas id="wheel" width="700" height="700" role="img" aria-label="Ruleta con sectores de tamaño proporcional a la probabilidad"></canvas>
+                        <div class="wheel-hub" aria-hidden="true">MK</div>
+                    </div>
+                    <div class="wheel-controls">
+                        <button class="btn btn-primary magnetic" id="spin-button" type="button">Girar</button>
+                    </div>
+                    <div class="wheel-history" id="wheel-history" aria-live="polite"></div>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="section faq" id="faq" aria-labelledby="faq-title">
+            <div class="wrap faq-grid">
+                <div class="reveal">
+                    <p class="eyebrow">Preguntas</p>
+                    <h2 id="faq-title">Lo que <em class="grad">suelen preguntar</em></h2>
+                </div>
+                <div class="faq-list reveal" style="--d:.1s">
+                    <details>
+                        <summary>¿Los premios de la ruleta son reales?</summary>
+                        <p>Sí. Si te toca un cupón de descuento, tienes derecho a usarlo.</p>
+                    </details>
+                    <details>
+                        <summary>¿Puedo volver a girar la ruleta?</summary>
+                        <p>Tienes una tirada al día. Se guarda en tu navegador, así que recargar la página no sirve: vuelve mañana para girar otra vez.</p>
+                    </details>
+                    <details>
+                        <summary>¿Cuándo estará la ficha completa de LETRIÑA?</summary>
+                        <p>Ya está en la colección con su precio (1,50 €). Su ficha con fotos llegará pronto.</p>
+                    </details>
+                    <details>
+                        <summary>¿El total de la calculadora es definitivo?</summary>
+                        <p>Es una suma de los precios de catálogo, pensada para que te hagas una idea rápida de tu pack.</p>
+                    </details>
+                    <details>
+                        <summary>¿Puedo proponer un producto nuevo?</summary>
+                        <p>Claro. Usa el formulario de sugerencias al final de la página y cuéntanos tu idea.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="section about" id="quienes-somos" aria-labelledby="about-title">
+            <div class="wrap about-grid">
+                <div class="reveal">
+                    <h2 id="about-title"><em class="grad">JGT</em></h2>
+                </div>
+                <div class="about-card reveal" style="--d:.1s">
+                    <p>MollyKao es una empresa creada por JGT. Hago impresiones en 3D: soportes de móvil, llaveros y figuras, con precios bajos.</p>
+                    <p>La colección sigue creciendo y tú puedes ayudarme a decidir qué llega después con el formulario de sugerencias.</p>
+                    <ul class="about-facts">
+                        <li><strong>JGT</strong><span>Creador de MollyKao</span></li>
+                        <li><strong>3D</strong><span>Todo impreso en 3D</span></li>
+                        <li><strong>5</strong><span>productos en la colección</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-band reveal">
+            <div class="wrap cta-inner">
+                <h2>¿Ya sabes <em class="grad">cuál es el tuyo</em>?</h2>
+                <div class="cta-actions">
+                    <a class="btn btn-primary magnetic" href="#productos">Volver a la colección</a>
+                    <a class="btn btn-ghost magnetic" href="#packs">Calcular mi pack</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer" id="contacto">
+        <div class="wrap">
+            <div class="footer-top">
+                <a class="footer-brand" href="#inicio">MollyKao<span>.</span></a>
+                <div class="footer-col"><strong>Contacto</strong><span>Una colección de JGT</span></div>
+                <div class="footer-col"><strong>¿Alguna sugerencia?</strong><a href="#suggestion-form">Escribir una idea <span aria-hidden="true">↓</span></a></div>
+            </div>
+            <form class="suggestion-form" id="suggestion-form">
+                <div class="field">
+                    <label for="suggestion-kind">Tipo de sugerencia</label>
+                    <select id="suggestion-kind" name="kind" required>
+                        <option value="objeto">Un objeto nuevo</option>
+                        <option value="cambio">Un cambio en la página</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="suggestion-title">Tu sugerencia</label>
+                    <input id="suggestion-title" name="title" type="text" maxlength="70" placeholder="¿Qué te gustaría proponer?" required>
+                </div>
+                <div class="field field-wide">
+                    <label for="suggestion-details">Detalles (opcional)</label>
+                    <textarea id="suggestion-details" name="details" rows="3" maxlength="500" placeholder="Un poco más de detalle"></textarea>
+                </div>
+                <div class="hp" aria-hidden="true"><label>No rellenar <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+                <button class="btn btn-primary btn-sm" type="submit">Enviar sugerencia <span aria-hidden="true">↗</span></button>
+                <p class="suggestion-status" id="suggestion-status" aria-live="polite"></p>
+            </form>
+            <div class="footer-bottom">
+                <span>© JGT · MollyKao</span>
+                <button type="button" class="link-btn" id="to-top">Volver arriba ↑</button>
+            </div>
+        </div>
+    </footer>
+
+    
+    <div class="cart-bar" id="cart-bar">
+        <span class="cart-bar-count"><b id="cart-bar-count">0</b> en tu pack</span>
+        <strong id="cart-bar-total">0,00 €</strong>
+        <a class="btn btn-light btn-xs" href="#packs">Ver pack</a>
+    </div>
+
+    
+    <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-panel pm">
+            <button class="pm-close" type="button" id="modal-close" aria-label="Cerrar ficha">×</button>
+            <div class="pm-stage" id="pm-stage">
+                <span class="pm-orb" aria-hidden="true"></span>
+                <span class="pm-letter" id="pm-letter" aria-hidden="true">D</span>
+                <img id="pm-img" alt="">
+                <span class="pm-badge" id="pm-variant-name"></span>
+            </div>
+            <div class="pm-info">
+                <p class="eyebrow pm-tag" id="pm-tag">Producto</p>
+                <h3 id="modal-title">Producto</h3>
+                <p class="pm-desc" id="pm-desc"></p>
+                <div class="pm-variant-wrap" id="pm-variant-wrap" hidden>
+                    <p class="pm-label">Elige el acabado</p>
+                    <div class="pm-variants" id="pm-variants"></div>
+                </div>
+                <p class="pm-single" id="pm-single"></p>
+                <ul class="pm-specs" id="pm-specs"></ul>
+                <div class="pm-buy">
+                    <span class="pm-price" id="pm-price">2 <small>€</small></span>
+                    <button class="btn btn-primary" type="button" id="modal-add">Añadir al pack +</button>
+                </div>
+                <p class="pm-inpack" id="pm-inpack" aria-live="polite"></p>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="modal share" id="share-modal" role="dialog" aria-modal="true" aria-labelledby="share-title" aria-hidden="true">
+        <div class="modal-panel share-panel">
+            <button class="pm-close" type="button" id="share-close" aria-label="Cerrar">×</button>
+            <div class="share-preview">
+                <img id="share-img" alt="Resumen de tu pack con productos y precios">
+                <span class="share-loading" id="share-loading">Preparando imagen…</span>
+            </div>
+            <div class="share-side">
+                <p class="eyebrow">Tu pack</p>
+                <h3 id="share-title">Guardar o compartir</h3>
+                <p class="share-sub">Descarga o comparte una imagen con tus productos, sus fotos y el total.</p>
+                <div class="share-actions">
+                    <button class="btn btn-primary btn-sm" type="button" id="share-native" hidden>Compartir imagen</button>
+                    <button class="btn btn-ghost btn-sm" type="button" id="share-download" disabled>Descargar imagen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="win" id="win" role="dialog" aria-modal="true" aria-labelledby="win-title" aria-hidden="true">
+        <div class="win-rays" aria-hidden="true"></div>
+        <div class="win-card">
+            <p class="win-eyebrow" id="win-eyebrow">Tu resultado</p>
+            <div class="win-big" id="win-big">—</div>
+            <h3 id="win-title">Premio</h3>
+            <p class="win-msg" id="win-msg"></p>
+            <p class="win-prob" id="win-prob"></p>
+            <button class="btn btn-primary" type="button" id="win-close">Seguir</button>
+        </div>
+    </div>
+
+    <div class="toasts" id="toasts" role="status" aria-live="polite"></div>
+    <canvas id="confetti" aria-hidden="true"></canvas>
+
+    <script src="script.js"></script>
+</body>
+</html>
